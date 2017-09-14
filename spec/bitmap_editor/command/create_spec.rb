@@ -7,8 +7,8 @@ module BitmapEditor
         it 'creates an Image object of the specified dimensions' do
           cmd = described_class.new(5, 5)
           cmd.run
-          expect(cmd.height).to eq 5
-          expect(cmd.width).to eq 5
+          expect(cmd.image.height).to eq 5
+          expect(cmd.image.width).to eq 5
         end
       end
     end

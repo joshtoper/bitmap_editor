@@ -1,4 +1,4 @@
-Dir[File.expand_path(File.dirname(__FILE__) + '/../lib/*.rb')].each { |file| require file }
+Dir["#{File.dirname(__FILE__)}/../lib/**/*.rb"].each { |f| load(f) }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
