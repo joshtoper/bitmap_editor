@@ -45,6 +45,31 @@ module BitmapEditor
       end
     end
 
+    describe '#colour' do
+      let(:image) { described_class.new(20, 20) }
+
+      context 'with valid params' do
+        it 'fills the specified pixel with the specified colour value' do
+          image.colour(1, 1, 'X')
+          expect(image.canvas[0][0]).to eq 'X'
+        end
+      end
+
+      context 'with invalid params' do
+        it 'raises an OutOfBoundsError when trying to try outside of the canvas' do
+          expect { image.colour(100, 1, 'X') }
+            .to raise_error BitmapEditor::Image::OutOfBoundsError
+        end
+
+        it 'raises an InvalidColourError when the specified colour is invalid' do
+          expect { image.colour(1, 1, 'archibald') }
+            .to raise_error BitmapEditor::Image::InvalidColourError
+        end
+      end
+    end
+
+
+
     private
 
     def canvas(width, height)
