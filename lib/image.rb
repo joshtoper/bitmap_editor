@@ -12,11 +12,11 @@ module BitmapEditor
       validate_dimensions(width, height)
       @width = width
       @height = height
-      @canvas = []
+      initialise_canvas
     end
 
-    def initialise_canvas
-      height.times { canvas << Array.new(width, 'O') }
+    def clear_canvas!
+      initialise_canvas
     end
 
     private
@@ -32,6 +32,11 @@ module BitmapEditor
 
     def invalid_height_message
       "Invalid height specified - must be between #{ACCEPTED_HEIGHT_RANGE.first} and #{ACCEPTED_HEIGHT_RANGE.last}"
+    end
+
+    def initialise_canvas
+      @canvas = []
+      height.times { canvas << Array.new(width, 'O') }
     end
   end
 end

@@ -8,6 +8,7 @@ module BitmapEditor
 
           expect(image.width).to eq 10
           expect(image.height).to eq 10
+          expect(image.canvas).to eq canvas(10, 10)
         end
       end
 
@@ -34,11 +35,13 @@ module BitmapEditor
       end
     end
     
-    describe '#initialise_canvas' do
-      it 'builds a white canvas of the specified dimensions, where white is repesented by the letter O' do
-        image = described_class.new(10, 10)
-        image.initialise_canvas
-        expect(image.canvas).to eq canvas(10, 10)
+    describe '#clear_canvas!' do
+      it 'rebuilds the canvas' do
+        image = described_class.new(20, 20)
+        image.canvas[0][0] = 'R'
+        image.clear_canvas!
+        
+        expect(image.canvas).to match_array canvas(20, 20)
       end
     end
 
