@@ -12,7 +12,7 @@ module BitmapEditor
 
       def run
         @image = Image.new(width, height)
-        image.initialise_canvas
+        true
       end
 
       private

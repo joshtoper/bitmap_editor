@@ -16,7 +16,6 @@ module BitmapEditor
 
           it 'instantiates a new Image object, and runs its canvas initialisation method' do
             expect(Image).to receive(:new).with(10, 10).and_return image
-            expect(image).to receive(:initialise_canvas).and_return true
 
             expect(cmd.run).to eq true
           end
