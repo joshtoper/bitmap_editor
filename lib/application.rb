@@ -4,13 +4,11 @@ module BitmapEditor
     class EmptyFileError < StandardError; end
 
     def run(file_path)
-      begin
-        load_input_file(file_path)
-        split_commands
-        run_commands
-      rescue => e
-        $stderr.puts e.message
-      end
+      load_input_file(file_path)
+      split_commands
+      run_commands
+    rescue => e
+      $stderr.puts e.message
     end
 
     private
