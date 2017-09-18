@@ -56,7 +56,7 @@ module BitmapEditor
       end
 
       context 'with invalid params' do
-        it 'raises an OutOfBoundsError when trying to try outside of the canvas' do
+        it 'raises an OutOfBoundsError when trying to draw outside of the canvas' do
           expect { image.colour(100, 1, 'X') }
             .to raise_error BitmapEditor::Image::OutOfBoundsError
         end
@@ -68,7 +68,29 @@ module BitmapEditor
       end
     end
 
+    describe '#vertical_fill' do
+      let(:image) { described_class.new(20, 20) }
 
+      context 'with valid params' do
+        it 'fills in the specified pixels with the specified colour' do
+          image.vertical_fill(1, 1, 20, 'T')
+
+          (1..20).each { |i| expect(image.canvas[i - 1][0]).to eq('T') }
+        end
+      end
+
+      context 'with invalid params' do
+        it 'raises an OutOfBoundsError when trying to draw outside of the canvas' do
+          expect { image.vertical_fill(1, 1, 500, 'T') }
+            .to raise_error BitmapEditor::Image::OutOfBoundsError
+        end
+
+        it 'raises an InvalidColourError when the specified colour is invalid' do
+          expect { image.vertical_fill(1, 1, 20, 'wibble') }
+            .to raise_error BitmapEditor::Image::InvalidColourError
+        end
+      end
+    end
 
     private
 
