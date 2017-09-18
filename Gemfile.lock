@@ -8,7 +8,9 @@ GEM
       tzinfo (~> 1.1)
     concurrent-ruby (1.0.5)
     diff-lcs (1.3)
+    docile (1.1.5)
     i18n (0.8.6)
+    json (2.1.0)
     minitest (5.10.3)
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
@@ -25,6 +27,11 @@ GEM
     rspec-support (3.6.0)
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
+    simplecov (0.15.1)
+      docile (~> 1.1.0)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     thread_safe (0.3.6)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
@@ -35,6 +42,7 @@ PLATFORMS
 DEPENDENCIES
   rspec
   shoulda-matchers
+  simplecov
 
 RUBY VERSION
    ruby 2.3.5p376

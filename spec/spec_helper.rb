@@ -1,4 +1,7 @@
 Dir["#{File.dirname(__FILE__)}/../lib/**/*.rb"].each { |f| load(f) }
+require 'simplecov'
+
+SimpleCov.start
 
 RSPEC_ROOT = File.dirname __FILE__
 
