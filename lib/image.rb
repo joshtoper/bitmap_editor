@@ -38,7 +38,11 @@ module BitmapEditor
     def horizontal_fill(x1, x2, y, colour)
       x1, x2, y = zero_index_coords(x1, x2, y)
       validate_input([x1, x2], [y], colour)
-      (x1..x2).each { |row| canvas[y][row] = colour }
+      (x1..x2).each { |col| canvas[y][col] = colour }
+    end
+
+    def render
+      canvas.map { |r| r.join }.join("\n")
     end
 
     private
@@ -71,8 +75,7 @@ module BitmapEditor
     end
 
     def check_colour_valid(colour)
-      raise InvalidColourError, 'Colour must be a single uppercase letter' 
-        unless colour_valid?(colour)
+      raise InvalidColourError, 'Colour must be a single uppercase letter' unless colour_valid?(colour)
     end
 
     def colour_valid?(colour)

@@ -116,7 +116,25 @@ module BitmapEditor
       end
     end
 
+    describe '#render' do
+      let(:image) { described_class.new(5, 5) }
+
+      it 'renders the canvas' do
+        expect(image.render).to eq blank_canvas.chomp
+      end
+    end
+
     private
+
+    def blank_canvas
+      <<~EOS
+        OOOOO
+        OOOOO
+        OOOOO
+        OOOOO
+        OOOOO
+      EOS
+    end
 
     def canvas(width, height)
       arr = []
