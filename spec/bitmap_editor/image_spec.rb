@@ -120,7 +120,7 @@ module BitmapEditor
       let(:image) { described_class.new(5, 5) }
 
       it 'renders the canvas' do
-        expect(image.render).to eq blank_canvas.chomp
+        expect { image.render }.to output(blank_canvas).to_stdout
       end
     end
 

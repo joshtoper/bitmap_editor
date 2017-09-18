@@ -13,7 +13,7 @@ module BitmapEditor
 
       describe '#run' do
         let(:image) { double('Image') }
-        let(:command) { described_class.new(image, 1, 2, 'D') }
+        let(:command) { described_class.new(image, [1, 2, 'D']) }
         
         it 'invokes the colour method of the Image' do
           expect(image).to receive(:colour).with(1, 2, 'D').and_return true

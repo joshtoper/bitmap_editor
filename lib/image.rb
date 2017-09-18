@@ -12,8 +12,8 @@ module BitmapEditor
 
     def initialize(width, height)
       validate_dimensions(width, height)
-      @width = width
-      @height = height
+      @width = width.to_i
+      @height = height.to_i
       initialise_canvas
     end
 
@@ -42,7 +42,8 @@ module BitmapEditor
     end
 
     def render
-      canvas.map { |r| r.join }.join("\n")
+      output = canvas.map { |r| r.join }.join("\n")
+      $stdout.puts output
     end
 
     private
@@ -61,7 +62,7 @@ module BitmapEditor
     end
 
     def zero_index_coords(*coords)
-      coords.map { |coord| coord - 1 }
+      coords.map { |coord| coord.to_i - 1 }
     end
 
     def validate_input(x, y, colour)
@@ -71,11 +72,11 @@ module BitmapEditor
 
     def check_coords_valid(x, y)
       x.each { |val| raise OutOfBoundsError, 'X value invalid' if val > width }
-      y.each { |val| raise OutOfBoundsError, 'Y value invalid' if val > width }
+      y.each { |val| raise OutOfBoundsError, 'Y value invalid' if val > height }
     end
 
     def check_colour_valid(colour)
-      raise InvalidColourError, 'Colour must be a single uppercase letter' unless colour_valid?(colour)
+      raise InvalidColourError, 'colour must be a single uppercase letter' unless colour_valid?(colour)
     end
 
     def colour_valid?(colour)

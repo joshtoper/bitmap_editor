@@ -1,14 +1,17 @@
+require_relative 'command_requiring_image'
 module BitmapEditor
   module Command
-    class VerticalFill
+    class VerticalFill < CommandRequiringImage
       attr_reader :image
 
-      def initialize(image, x, y1, y2, colour)
+      def initialize(image, params)
         @image = image
-        @x = x
-        @y1 = y1
-        @y2 = y2
-        @colour = colour
+        @x = params[0]
+        @y1 = params[1]
+        @y2 = params[2]
+        @colour = params[3]
+        validate_params_presence
+        super
       end
 
       def run
@@ -18,6 +21,10 @@ module BitmapEditor
       private
       
       attr_reader :x, :y1, :y2, :colour
+
+      def validate_params_presence
+        raise ArgumentError if x.nil? || y1.nil? || y2.nil? || colour.nil?
+      end
     end
   end
 end

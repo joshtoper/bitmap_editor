@@ -11,7 +11,7 @@ module BitmapEditor
 
       describe '#run' do
         let(:image) { double('Image') }
-        let(:command) { described_class.new(image, 1, 1, 5, 'A') }
+        let(:command) { described_class.new(image, [1, 1, 5, 'A']) }
 
         it "invokes the image's vertical_fill method" do
           expect(image).to receive(:vertical_fill)

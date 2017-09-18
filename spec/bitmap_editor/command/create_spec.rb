@@ -12,7 +12,7 @@ module BitmapEditor
       describe '#run' do
         context 'with valid params' do
           let(:image) { double('Image') }
-          let(:cmd) { described_class.new(10, 10) }
+          let(:cmd) { described_class.new([10, 10]) }
 
           it 'instantiates a new Image object, and runs its canvas initialisation method' do
             expect(Image).to receive(:new).with(10, 10).and_return image
@@ -23,7 +23,7 @@ module BitmapEditor
 
         context 'with invalid params' do
           let(:image) { double('Image') }
-          let(:cmd) { described_class.new(10, 10) }
+          let(:cmd) { described_class.new([10, 10]) }
 
           it 'raises an exception when the specified dimensions are invalid' do
             expect(Image).to receive(:new).with(10, 10).and_raise BitmapEditor::Image::InvalidWidthError
