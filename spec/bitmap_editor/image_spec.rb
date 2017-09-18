@@ -92,6 +92,30 @@ module BitmapEditor
       end
     end
 
+    describe '#horizontal_fill' do
+      let(:image) { described_class.new(20, 20) }
+
+      context 'with valid params' do
+        it 'fills in the specified pixels with the specified colour' do
+          image.horizontal_fill(1, 20, 1, 'K')
+
+          (1..20).each { |i| expect(image.canvas[0][i - 1]).to eq('K') }
+        end
+      end
+
+      context 'with invalid params' do
+        it 'raises an OutOfBoundsError when trying to draw outside of the canvas' do
+          expect { image.horizontal_fill(1, 500, 1, 'T') }
+            .to raise_error BitmapEditor::Image::OutOfBoundsError
+        end
+
+        it 'raises an InvalidColourError when the specified colour is invalid' do
+          expect { image.horizontal_fill(1, 20, 1, 'blah') }
+            .to raise_error BitmapEditor::Image::InvalidColourError
+        end
+      end
+    end
+
     private
 
     def canvas(width, height)
