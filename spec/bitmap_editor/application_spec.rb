@@ -21,7 +21,7 @@ module BitmapEditor
       context 'with bad input' do
         context 'when the file does not exist at the specified path' do
           it 'returns a message informing that the file was not found' do
-            expect { described_class.new.run('hurr durr') }.to output("File not found\n").to_stderr
+            expect { described_class.new.run('hurr durr') }.to output("File 'hurr durr' not found\n").to_stderr
           end
         end
 
