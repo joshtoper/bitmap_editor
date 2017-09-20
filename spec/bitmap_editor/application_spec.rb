@@ -16,18 +16,18 @@ module BitmapEditor
             expect { described_class.new.run("#{sample_files_folder}/more_commands.txt") }.to output(coloured_canvas).to_stdout
           end
         end
+
+        context 'when the input file contains rogue whitespace, but it still basically ok' do
+          it 'prints the canvas to stdout' do
+            expect { described_class.new.run("#{sample_files_folder}/slightly_wonky.txt") }.to output(coloured_canvas).to_stdout
+          end
+        end
       end
 
       context 'with bad input' do
         context 'when the file does not exist at the specified path' do
           it 'returns a message informing that the file was not found' do
             expect { described_class.new.run('hurr durr') }.to output("File 'hurr durr' not found\n").to_stderr
-          end
-        end
-
-        context 'when the file is empty' do
-          it 'returns a message informing that the file was empty' do
-            expect { described_class.new.run("#{sample_files_folder}/empty.txt") }.to output("File is empty\n").to_stderr
           end
         end
 
@@ -56,6 +56,27 @@ module BitmapEditor
           it 'outputs the error message, which includes the failing command' do
             expect { described_class.new.run("#{sample_files_folder}/invalid_colour.txt") }
               .to output("Command 'L 1 1 ?' failed - colour must be a single uppercase letter\n").to_stderr
+          end
+        end
+
+        context 'when the specified file is not a text file' do
+          it 'outputs an error message' do
+            expect { described_class.new.run("#{sample_files_folder}/hello.jpg") }
+              .to output("File is either empty or of an invalid type - please supply only text files.\n").to_stderr
+          end
+        end
+
+        context 'when the specified file looks like a text file, but is not' do
+          it 'outputs an error message' do
+            expect { described_class.new.run("#{sample_files_folder}/hello.txt") }
+              .to output("File is either empty or of an invalid type - please supply only text files.\n").to_stderr
+          end
+        end
+
+        context 'when the specified file is berserk' do
+          it 'outputs an error message' do
+            expect { described_class.new.run("#{sample_files_folder}/berserk.txt") }
+              .to output("Command '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' ' failed - specified command not supported\n").to_stderr
           end
         end
       end

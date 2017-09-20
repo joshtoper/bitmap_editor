@@ -22,7 +22,11 @@ S - Show the contents of the current image
 Assuming you have Docker installed on your machine ([Mac guide here](https://docs.docker.com/docker-for-mac/), and [Windows guide here](https://docs.docker.com/docker-for-windows/install/)), and the Docker daemon is running, you can utilise it as follows:
 
 1. Build the container: `docker build -t bitmap_editor .`
-2. Run the app: `docker run bitmap_editor path/to/input/file.txt`
+2. Run the app: `docker run bitmap_editor bin/bitmap_editor path/to/input/file.txt`
+
+You can run the specs inside the Docker container with the following command:
+
+`docker run bitmap_editor rspec`
 
 ### Native
 
@@ -31,22 +35,8 @@ The app uses Ruby 2.3.5. Assuming you have this installed on your machine, you c
 1. Download Gem dependencies: `bundle`
 2. Run the app: `bin/bitmap_editor path/to/input/file.txt`
 
-## Example
+You can run the specs with the `rspec` command.
 
-### Input File:
-```
-I 5 6
-L 1 3 A
-V 2 3 6 W
-H 3 5 2 Z
-S
-```
-### Expected Output:
-```
-OOOOO
-OOZZZ
-AWOOO
-OWOOO
-OWOOO
-OWOOO
-```
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/JoshToper/bitmap_editor.
